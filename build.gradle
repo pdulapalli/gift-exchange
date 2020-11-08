@@ -13,6 +13,7 @@ plugins {
 
 repositories {
     jcenter()
+    mavenCentral()
 }
 
 mainClassName = 'giftexchange.App'
@@ -23,6 +24,10 @@ jar {
             'Main-Class': mainClassName
         )
     }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 test {
@@ -31,6 +36,7 @@ test {
 
 dependencies {
     implementation 'com.google.guava:guava:27.0.1-jre'
+    compile group: 'org.psjava', name: 'psjava', version: '0.1.19'
     testImplementation 'junit:junit:4.12'
 }
 

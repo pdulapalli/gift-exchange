@@ -49,7 +49,7 @@ public class Family {
 	public List<String> getMemberNames() {
 		return this.members
 			.stream()
-			.map(individual -> individual.getName())
+			.map(Individual::getName)
 			.collect(Collectors.toList());
 	}
 
