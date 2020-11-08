@@ -1,6 +1,9 @@
 package giftexchange;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Individual {
 	private final String name;
@@ -35,6 +38,29 @@ public class Individual {
 		return new Individual(name, parents, null);
 	}
 
+	public boolean isImmediateFamilyMember(Individual person) {
+		// Married
+		if (this.spouse.equals(person.name)) {
+			return true;
+		}
+
+		List<String> myParents = this.getExistingParents();
+		List<String> theirParents = person.getExistingParents();
+
+		// Parent-Child
+		boolean isMyParent = myParents.contains(person.getName());
+		boolean amTheirParent = theirParents.contains(this.name);
+		if (isMyParent || amTheirParent) {
+			return true;
+		}
+
+		// Siblings
+		return !myParents.isEmpty() &&
+			   !theirParents.isEmpty() &&
+			   myParents.containsAll(theirParents) &&
+			   theirParents.containsAll(myParents);
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Individual)) {
@@ -58,6 +84,7 @@ public class Individual {
 			.append(this.name)
 			.append(", parents=")
 			.append(Arrays.toString(this.parents));
+
 		if (spouse != null) {
 			sb.append(", spouse=").append(this.spouse);
 		}
@@ -73,6 +100,13 @@ public class Individual {
 
 	public String getSpouse() {
 		return this.spouse;
+	}
+
+	public List<String> getExistingParents() {
+		return Arrays
+			.stream(this.parents)
+			.filter(Objects::nonNull)
+			.collect(Collectors.toList());
 	}
 
 	public String[] getParents() {
