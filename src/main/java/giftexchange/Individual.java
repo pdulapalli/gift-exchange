@@ -40,7 +40,7 @@ public class Individual {
 
 	public boolean isImmediateFamilyMember(Individual person) {
 		// Married
-		if (this.spouse.equals(person.name)) {
+		if (this.spouse != null && this.spouse.equals(person.name)) {
 			return true;
 		}
 

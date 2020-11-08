@@ -15,7 +15,8 @@ public class IndividualTest {
 		assertEquals("Individual spouse should be correct", "Sarah", parsed.getSpouse());
 
 		String[] parentsExpected = new String[]{"Roger", "Mary"};
-		assertArrayEquals("Individual parents should be correct", parentsExpected, parsed.getParents());
+		assertArrayEquals("Individual parents should be correct", parentsExpected,
+			parsed.getParents());
 	}
 
 	@Test
@@ -28,7 +29,8 @@ public class IndividualTest {
 		assertNull("Individual should not have a spouse", parsed.getSpouse());
 
 		String[] parentsExpected = new String[]{"John", "Sarah"};
-		assertArrayEquals("Individual parents should be correct", parentsExpected, parsed.getParents());
+		assertArrayEquals("Individual parents should be correct", parentsExpected,
+			parsed.getParents());
 	}
 
 	@Test
@@ -41,7 +43,8 @@ public class IndividualTest {
 		assertEquals("Individual spouse should be correct", "Mary", parsed.getSpouse());
 
 		String[] parentsExpected = new String[]{};
-		assertArrayEquals("Individual should not have parents", parentsExpected, parsed.getParents());
+		assertArrayEquals("Individual should not have parents", parentsExpected,
+			parsed.getParents());
 	}
 
 	@Test
