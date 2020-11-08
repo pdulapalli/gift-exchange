@@ -74,5 +74,15 @@ Assumes the `gift-exchange` container image was built.
 Please execute the following:
 
 ```
-cat ./familyMembersList.txt | docker run -i gift-exchange
+cat ./familyMembersList.txt | docker run -it gift-exchange
+```
+
+### Native
+
+Assumes that the Java 8 Runtime is installed.
+
+Please execute the following:
+
+```
+cat ./familyMembersList.txt | java -jar ./build/libs/giftexchange.jar
 ```
