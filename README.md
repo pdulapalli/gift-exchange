@@ -74,7 +74,7 @@ Assumes the `gift-exchange` container image was built.
 Please execute the following:
 
 ```
-cat ./familyMembersList.txt | docker run -it gift-exchange
+cat ./familyMembersList.txt | docker run -i gift-exchange
 ```
 
 ### Native
