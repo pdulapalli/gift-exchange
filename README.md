@@ -85,6 +85,37 @@ Carl,John,Sarah
 Patricia,John,Sarah
 ```
 
+#### Example 2
+
+**NOTE: This family structure is solvable when excluding matches with immediate family members**
+
+Available as a text file [here](examples/compatibleWithImmediateFamilyFilter.txt)
+
+A picture representation is available [here](examples/compatibleWithImmediateFamilyFilter.png)
+
+Relationships
+* Angus is married to Melinda.
+* Beckett is married to Harriett.
+* Angus and Melinda have two children: Clifford and Sylvia.
+* Beckett and Harriett have two children: Nigel and Wilma.
+* Clifford and Wilma are married.
+* Sylvia is married to Trenton.
+* Trenton's parents, Ellis and Shirley, are not present in the exchange.
+* Nigel is married to Ciara.
+* Ciara's parents, Jermaine and Roxanne, are not present in the exchange.
+
+Representation
+```
+Angus,,,Melinda
+Beckett,,,Harriett
+Clifford,Angus,Melinda,Wilma
+Sylvia,Angus,Melinda,Trenton
+Trenton,Ellis,Shirley,Sylvia
+Nigel,Beckett,Harriett,Ciara
+Ciara,Jermaine,Roxanne,Nigel
+Wilma,Beckett,Harriett,Clifford
+```
+
 ### Output Format
 
 A list of family members with their designated gift recipients, comma-separated.
@@ -96,6 +127,12 @@ GIFTER,RECIPIENT
 ...
 <personX>,<personY>
 ```
+
+### Options
+
+Supply the `--allow-immediate-family` flag to allow pairing between immediate family members.
+If this flag is not supplied, by default, pairing will NOT be permitted between immediate family
+members.
 
 ### Docker
 

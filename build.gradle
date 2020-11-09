@@ -35,6 +35,7 @@ test {
 }
 
 dependencies {
+    compile group: 'org.psjava', name: 'psjava', version: '0.1.19'
     testImplementation 'junit:junit:4.12'
 }
 

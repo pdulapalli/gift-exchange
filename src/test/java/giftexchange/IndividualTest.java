@@ -47,6 +47,72 @@ public class IndividualTest {
 			parsed.getParents());
 	}
 
+	@Test
+	public void testCheckImmediateFamilyMember_NotImmediate() {
+		Individual firstPerson = createIndividual("Alice,Thomas,Linda,Gideon");
+		Individual secondPerson = createIndividual("James,,,Rachael");
+
+		assertFalse(
+			"Should recognize non-immediate family member",
+			firstPerson.isImmediateFamilyMember(secondPerson)
+		);
+	}
+
+	@Test
+	public void testCheckImmediateFamilyMember_SelfIsSelf() {
+		Individual firstPerson = createIndividual("Alice,Thomas,Linda,Gideon");
+
+		assertTrue(
+			"Should be an immediate family member when self is self",
+			firstPerson.isImmediateFamilyMember(firstPerson)
+		);
+	}
+
+	@Test
+	public void testCheckImmediateFamilyMember_SelfIsChild() {
+		Individual firstPerson = createIndividual("Alice,Thomas,Linda,Gideon");
+		Individual secondPerson = createIndividual("Thomas,,,Linda");
+
+		assertTrue(
+			"Should be an immediate family member when self is child of the other",
+			firstPerson.isImmediateFamilyMember(secondPerson)
+		);
+	}
+
+	@Test
+	public void testCheckImmediateFamilyMember_Sibling() {
+		Individual firstPerson = createIndividual("Alice,Thomas,Linda,Gideon");
+		Individual secondPerson = createIndividual("Robert,Thomas,Linda");
+
+		assertTrue(
+			"Should be an immediate family member when siblings",
+			firstPerson.isImmediateFamilyMember(secondPerson)
+		);
+	}
+
+	@Test
+	public void testCheckImmediateFamilyMember_SelfIsParent() {
+		Individual firstPerson = createIndividual("Thomas,,,Linda");
+		Individual secondPerson = createIndividual("Alice,Thomas,Linda,Gideon");
+
+		assertTrue(
+			"Should be an immediate family member when self is parent of the other",
+			firstPerson.isImmediateFamilyMember(secondPerson)
+		);
+	}
+
+	@Test
+	public void testCheckImmediateFamilyMember_Spouse() {
+		Individual firstPerson = createIndividual("Rachael,,,James");
+		Individual secondPerson = createIndividual("James,,,Rachael");
+
+		assertTrue(
+			"Should be an immediate family member when spouses",
+			firstPerson.isImmediateFamilyMember(secondPerson)
+		);
+	}
+
+
 	private static Individual createIndividual(String sampleRecord) {
 		Individual parsed = null;
 		try {
