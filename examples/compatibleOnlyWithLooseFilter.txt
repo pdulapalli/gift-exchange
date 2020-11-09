@@ -1,0 +1,6 @@
+John,Roger,Mary,Sarah
+Sarah,Eric,Diana,John
+Roger,,,Mary
+Mary,,,Roger
+Carl,John,Sarah
+Patricia,John,Sarah
