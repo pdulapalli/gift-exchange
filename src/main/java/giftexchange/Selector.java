@@ -52,12 +52,12 @@ public class Selector {
 			return;
 		}
 
-		System.out.println("GIFTER -> RECIPIENT");
+		System.out.println("GIFTER,RECIPIENT");
 		assignments.sort(Comparator.comparing(a -> a.first));
 		for (PairTuple<String, String> pairing : assignments) {
 			String gifter = pairing.first;
 			String recipient = pairing.second;
-			System.out.println(gifter + " -> " + recipient);
+			System.out.println(gifter + "," + recipient);
 		}
 	}
 }
