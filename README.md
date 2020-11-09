@@ -47,7 +47,11 @@ The structure should resemble the following:
 <firstName>,<parent1>,<parent2>,<spouse>
 ```
 
-### Example
+### Examples
+
+#### Example 1
+
+Available as a text file [here](examples/compatibleOnlyWithLooseFilter.txt)
 
 John is the child of Roger and Mary.
 Sarah is the child of Eric and Diana.
@@ -61,6 +65,27 @@ Roger,,,Mary
 Mary,,,Roger
 Carl,John,Sarah
 Patricia,John,Sarah
+```
+
+#### Example 2
+
+**NOTE: This family structure is solvable when excluding matches with immediate family members**
+
+Available as a text file [here](examples/compatibleWithImmediateFamilyFilter.txt)
+
+Angus is married to Melinda.
+Beckett is married to Harriett.
+Angus and Melinda have two children: Clifford and Sylvia.
+Beckett and Harriett have two children: Nigel and Wilma.
+Clifford and Wilma are married.
+
+```
+Angus,,,Melinda
+Beckett,,,Harriett
+Clifford,Angus,Melinda,Wilma
+Sylvia,Angus,Melinda
+Nigel,Beckett,Harriett
+Wilma,Beckett,Harriett,Clifford
 ```
 
 ### Output Format
