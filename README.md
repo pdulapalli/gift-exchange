@@ -2,13 +2,12 @@
 
 ## Assumptions
 
-For simplification purposes, we will assume:
-* All family members will have unique first name
-* Each individual will have zero to two parents
+These assumptions are made for simplification purposes:
+* All family members will have unique names
+* Each individual will have zero or two parents
   * Zero parents should happen at the highest level of the family representation to ensure finite bounds
 * Each individual will have zero or one spouse
   * If the individual has children, then he/she has one spouse
-* The gift recipient assignments are not secret
 
 ## Building
 
@@ -94,7 +93,15 @@ Wilma,Beckett,Harriett,Clifford
 
 ### Output Format
 
-A list of family members with their designated gift recipients.
+A list of family members with their designated gift recipients, comma-separated.
+
+Will resemble this:
+```
+GIFTER,RECIPIENT
+<personA>,<personB>
+...
+<personX>,<personY>
+```
 
 ### Options
 
