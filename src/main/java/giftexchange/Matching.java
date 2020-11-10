@@ -6,14 +6,14 @@ import org.psjava.ds.graph.MutableBipartiteGraph;
 
 import java.util.*;
 
-public class Selector {
+public class Matching {
 	private static final String LEFT_VERT_PREFIX = "L_";
 	private static final String RIGHT_VERT_PREFIX = "R_";
 
-	public static List<PairTuple<String, String>> makeAssignments(List<String> membersList,
+	public static HashMap<String, String> makeAssignments(List<String> membersList,
 		List<PairTuple<String, String>> validPairings) {
 		if (membersList.size() < 2) {
-			return new ArrayList<>();
+			return new HashMap<>();
 		}
 
 		MutableBipartiteGraph<String> mbg = MutableBipartiteGraph.create();
@@ -36,27 +36,27 @@ public class Selector {
 			.getInstance()
 			.calc(mbg);
 
-		List<PairTuple<String, String>> assignments = new ArrayList<>();
+		HashMap<String, String> assignments = new HashMap<>();
 		for (String gifter : membersList) {
 			String recipient = result
 				.getMatchedVertex(LEFT_VERT_PREFIX + gifter)
 				.replaceAll(RIGHT_VERT_PREFIX, "");
-			assignments.add(new PairTuple<>(gifter, recipient));
+			assignments.put(gifter, recipient);
 		}
 
 		return assignments;
 	}
 
-	public static void printAssignments(List<PairTuple<String, String>> assignments) {
+	public static void printAssignments(HashMap<String, String> assignments) {
 		if (assignments.isEmpty()) {
 			return;
 		}
 
 		System.out.println("GIFTER,RECIPIENT");
-		assignments.sort(Comparator.comparing(a -> a.first));
-		for (PairTuple<String, String> pairing : assignments) {
-			String gifter = pairing.first;
-			String recipient = pairing.second;
+		List<String> gifters = new ArrayList<>(assignments.keySet());
+		Collections.sort(gifters);
+		for (String gifter : gifters) {
+			String recipient = assignments.get(gifter);
 			System.out.println(gifter + "," + recipient);
 		}
 	}

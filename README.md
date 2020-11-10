@@ -12,6 +12,10 @@ For simplification purposes, we will assume:
 
 ## Building
 
+### Tests
+
+Gradle will run the test stage (called `test`) automatically during the `build` stage.
+
 ### Docker
 
 Assuming that Docker has been installed for your OS.
@@ -90,7 +94,13 @@ Wilma,Beckett,Harriett,Clifford
 
 ### Output Format
 
-A list of family members with their designated
+A list of family members with their designated gift recipients.
+
+### Options
+
+Supply the `--allow-immediate-family` flag to allow pairing between immediate family members.
+If this flag is not supplied, by default, pairing will NOT be permitted between immediate family
+members.
 
 ### Docker
 

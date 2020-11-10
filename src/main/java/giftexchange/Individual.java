@@ -28,6 +28,10 @@ public class Individual {
 			throw new Exception("Incomplete record was supplied");
 		}
 
+		for (int i = 0; i < contents.length; i += 1) {
+			contents[0] = contents[0].trim();
+		}
+
 		String name = contents[0];
 		String[] parents = Arrays.copyOfRange(contents, 1, 3);
 
@@ -39,6 +43,11 @@ public class Individual {
 	}
 
 	public boolean isImmediateFamilyMember(Individual person) {
+		// Self
+		if (this.name.equals(person.name)) {
+			return true;
+		}
+
 		// Married
 		if (this.spouse != null && this.spouse.equals(person.name)) {
 			return true;

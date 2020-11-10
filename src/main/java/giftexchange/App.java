@@ -1,12 +1,13 @@
 package giftexchange;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class App {
 	public static void main(String[] args) {
 		boolean strictPairingsOnly = true;
 		for (String arg : args) {
-			if (arg.equals("--loose-constraints")) {
+			if (arg.equals("--allow-immediate-family")) {
 				strictPairingsOnly = false;
 			}
 		}
@@ -22,9 +23,9 @@ public class App {
 		}
 
 		try {
-			List<PairTuple<String, String>> assignments =
-				Selector.makeAssignments(fam.getMemberNames(), validPairings);
-			Selector.printAssignments(assignments);
+			HashMap<String, String> assignments =
+				Matching.makeAssignments(fam.getMemberNames(), validPairings);
+			Matching.printAssignments(assignments);
 		} catch (RuntimeException exc) {
 			System.err.println("Unable to compute gift exchange matches");
 		}

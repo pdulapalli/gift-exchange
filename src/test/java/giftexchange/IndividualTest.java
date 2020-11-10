@@ -59,6 +59,16 @@ public class IndividualTest {
 	}
 
 	@Test
+	public void testCheckImmediateFamilyMember_SelfIsSelf() {
+		Individual firstPerson = createIndividual("Alice,Thomas,Linda,Gideon");
+
+		assertTrue(
+			"Should be an immediate family member when self is self",
+			firstPerson.isImmediateFamilyMember(firstPerson)
+		);
+	}
+
+	@Test
 	public void testCheckImmediateFamilyMember_SelfIsChild() {
 		Individual firstPerson = createIndividual("Alice,Thomas,Linda,Gideon");
 		Individual secondPerson = createIndividual("Thomas,,,Linda");
